@@ -1,0 +1,72 @@
+<div class="col-6 p-5 mx-auto">
+    <div class="card m-5 p-3 w-100">
+    <h3 class="text-center">Users</h3>
+    
+     <div class="row m-0 p-0" *ngFor="let item of nameData let i=index">
+     <div class="col-12"  >
+     <div class="input-group" >
+             <div class="input-group-prepend">
+               <span class="input-group-text" id="">First name</span>
+             </div>
+             <input type="text" class="form-control"  name="firstname"  [(ngModel)]="item.first_name">
+             <div class="input-group-prepend">
+               <span class="input-group-text" id="">Last name</span>
+             </div>
+             <input type="text" class="form-control"  name="lastname"  [(ngModel)]="item.last_name">
+             <div class="input-group-append">
+               <button class="btn btn-outline-secondary" type="button " (click)="deleteRow(nameData, i)">X</button>
+             </div>
+           </div>
+           
+     </div>
+     </div>
+     <div class="text-center py-2">
+     <button type="button" class="btn btn-primary" (click)="addnewUser()">Add User Row</button>
+     </div>
+     <div class="row m-0 py-3 p-0">
+     <div class="col-12">
+     <h3 class="text-center">Booking</h3>
+     <div class="input-group">
+             <div class="input-group-prepend">
+               <span class="input-group-text" id="">Start Date</span>
+             </div>
+             <input type="text" class="form-control" name="fromdate" [bsConfig]="{dateInputFormat: 'DD/MM/YYYY '}" bsDatepicker [(ngModel)]="fromDate">
+             <div class="input-group-prepend">
+               <span class="input-group-text" id="">End Date</span>
+             </div>
+             <input type="text" class="form-control" name="todate" [bsConfig]="{dateInputFormat: 'DD/MM/YYYY '}"  [minDate]="fromDate" bsDatepicker [(ngModel)]="toDate">
+           </div>
+           
+           <div class="text-center py-2">
+     <button type="button" class="btn btn-danger" (click)="saveRecords()">Save Record</button>
+     </div>
+     </div>
+     </div>
+    </div>
+    
+    <div class="card m-5 p-3 w-100">
+    <h3 class="text-center">Record List</h3>
+    <table class="table">
+ <thead>
+   <tr>
+     <th scope="col">Users</th>
+     <th scope="col">Start Date</th>
+     <th scope="col">End Date</th>
+     <th scope="col">Actions</th>
+   </tr>
+ </thead>
+ <tbody>
+   <tr *ngFor="let data of userList let i = index">
+     <td><p *ngFor="let names of data.data.users">{{names.first_name}} {{names.last_name}}</td>
+     <td>{{data.data.booking_start_date}}</td>
+     <td>{{data.data.booking_end_date}}</td>
+     <td><button type="button" class="btn btn-sm btn-primary" (click)="deleteEntries(data.id)">Delete</button></td>
+   </tr>
+ 
+ </tbody>
+</table>
+    
+    </div>
+    
+    
+    </div>
